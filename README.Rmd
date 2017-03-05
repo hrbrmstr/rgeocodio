@@ -1,0 +1,75 @@
+---
+output: rmarkdown::github_document
+---
+
+`rgeocodio` : Tools to Work with the <https://geocod.io/> 'API'
+
+NOTE: You need an [API key](https://dash.geocod.io/) to use this package.
+
+The following functions are implemented:
+
+- `gio_auth`:	Get or set GEOCODIO_API_KEY value
+- `gio_batch_geocode`:	Geocode up to 10,000 addresses
+- `gio_batch_reverse`:	Reverse geocode up to 10,000 coordinates
+- `gio_geocode`:	Geocode a single address
+- `gio_geocode_components`:	Geocode a single address
+- `gio_reverse`:	Reverse geocode a single lat/lon pair
+
+### TODO
+
+- enable selection of additional fields
+- better return types
+- more error checking
+- tests
+
+### Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/rgeocodio")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+### Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(rgeocodio)
+
+# current verison
+packageVersion("rgeocodio")
+
+gio_geocode("1109 N Highland St, Arlington, VA")
+
+gio_geocode_components("1109 N Highland St", "Arlington", "VA")
+
+gio_reverse(38.9002898, -76.9990361)
+
+gio_batch_geocode(c(
+  "1109 N Highland St, Arlington VA",
+  "525 University Ave, Toronto, ON, Canada",
+  "4410 S Highway 17 92, Casselberry FL",
+  "15000 NE 24th Street, Redmond WA",
+  "17015 Walnut Grove Drive, Morgan Hill CA"
+))
+
+data.frame(
+  lat = c(35.9746000, 32.8793700, 33.8337100, 35.4171240),
+  lon = c(-77.9658000, -96.6303900, -117.8362320, -80.6784760)
+) -> to_code
+
+gio_batch_reverse(to_code)
+```
+
+### Test Results
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(rgeocodio)
+library(testthat)
+
+date()
+
+test_dir("tests/")
+```
+

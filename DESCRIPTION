@@ -1,0 +1,21 @@
+Package: rgeocodio
+Type: Package
+Title: Tools to Work with the <geocod.io> 'API'
+Version: 0.1.0
+Date: 2017-03-05
+Author: Bob Rudis (bob@rud.is)
+Maintainer: Bob Rudis <bob@rud.is>
+Description: A set of tools to Work with the <geocod.io> 'API'.
+URL: https://github.com/hrbrmstr/rgeocodio
+BugReports: https://github.com/hrbrmstr/rgeocodio/issues
+License: AGPL
+Suggests:
+    testthat,
+    covr
+Depends:
+    R (>= 3.2.0)
+Imports:
+    purrr,
+    httr,
+    jsonlite
+RoxygenNote: 6.0.1
