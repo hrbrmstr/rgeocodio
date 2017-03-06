@@ -15,10 +15,12 @@ The following functions are implemented:
 - `gio_geocode_components`:	Geocode a single address
 - `gio_reverse`:	Reverse geocode a single lat/lon pair
 
+All functions return tidy `tibble`s with sane column names.
+
 ### TODO
 
-- enable selection of additional fields
-- better return types
+- <strike>enable selection of additional fields</strike>
+- <strike>better return types</strike>
 - more error checking
 - tests
 
@@ -46,13 +48,15 @@ gio_geocode_components("1109 N Highland St", "Arlington", "VA")
 
 gio_reverse(38.9002898, -76.9990361)
 
-gio_batch_geocode(c(
+addresses <- c(
   "1109 N Highland St, Arlington VA",
   "525 University Ave, Toronto, ON, Canada",
   "4410 S Highway 17 92, Casselberry FL",
   "15000 NE 24th Street, Redmond WA",
   "17015 Walnut Grove Drive, Morgan Hill CA"
-))
+)
+
+gio_batch_geocode(addresses)
 
 data.frame(
   lat = c(35.9746000, 32.8793700, 33.8337100, 35.4171240),
@@ -60,6 +64,21 @@ data.frame(
 ) -> to_code
 
 gio_batch_reverse(to_code)
+```
+
+### Extra Fields
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+gio_geocode("1109 N Highland St, Arlington, VA", fields=c("cd", "stateleg"))
+
+gio_geocode_components("1109 N Highland St", "Arlington", "VA",
+                      fields=c("census", "stateleg"))
+
+gio_reverse(38.9002898, -76.9990361, fields=c("census", "stateleg"))
+
+gio_batch_geocode(addresses, fields=c("cd", "stateleg"))
+
+gio_batch_reverse(to_code, fields=c("census", "stateleg"))
 ```
 
 ### Test Results

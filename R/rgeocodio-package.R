@@ -8,4 +8,5 @@
 #' @author Bob Rudis (bob@@rud.is)
 #' @import purrr httr
 #' @importFrom jsonlite fromJSON
+#' @importFrom tibble as_tibble
 NULL

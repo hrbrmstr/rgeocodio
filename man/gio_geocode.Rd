@@ -4,10 +4,17 @@
 \alias{gio_geocode}
 \title{Geocode a single address}
 \usage{
-gio_geocode(address, api_key = gio_auth())
+gio_geocode(address, fields, api_key = gio_auth())
 }
 \arguments{
 \item{address}{address to geocode}
+
+\item{fields}{vector of additional fields to return with query results. Note that these
+count as extra lookups and impact your dailu quota/costs. See \href{https://geocod.io/docs/#fields}{the official documentation}
+for more information on costs/pricing. Can be \code{cd}, \code{cd113}, \code{cd114}, or \code{cd115} for
+current or historical Congressional districts (U.S.); \code{stateleg} for State Legislative District (House & Senate, U.S.);
+\code{school} forSchool District (elementary/secondary or unified, U.S.); \code{census} for
+Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
@@ -15,5 +22,8 @@ gio_geocode(address, api_key = gio_auth())
 Geocode a single address
 }
 \examples{
-gio_geocode("1109 N Highland St, Arlington, VA")
+\dontrun{
+gio_geocode("1109 N Highland St, Arlcdceington, VA")
+gio_geocode("1109 N Highland St, Arlington, VA", fields=c("cd", "stateleg"))
+}
 }

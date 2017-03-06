@@ -2,6 +2,12 @@
 #'
 #' @md
 #' @param coordinates data frame of coordinates with `lat` and `lon` columns
+#' @param fields vector of additional fields to return with query results. Note that these
+#'        count as extra lookups and impact your dailu quota/costs. See [the official documentation](https://geocod.io/docs/#fields)
+#'        for more information on costs/pricing. Can be `cd`, `cd113`, `cd114`, or `cd115` for
+#'        current or historical Congressional districts (U.S.); `stateleg` for State Legislative District (House & Senate, U.S.);
+#'        `school` forSchool District (elementary/secondary or unified, U.S.); `census` for
+#'        Census Block/Tract & FIPS codes (U.S.) or `timezone` for timezone.
 #' @param api_key `geocod.io` API key
 #' @export
 #' @examples
@@ -10,7 +16,8 @@
 #'   lon = c(-77.9658000, -96.6303900, -117.8362320, -80.6784760)
 #' ) -> to_code
 #' gio_batch_reverse(to_code)
-gio_batch_reverse <- function(coordinates, api_key=gio_auth()) {
+#' gio_batch_reverse(to_code, fields=c("census", "stateleg"))
+gio_batch_reverse <- function(coordinates, fields, api_key=gio_auth()) {
 
   if (nrow(coordinates) > 10000) {
     message("Too many addresses. Submitting first 10,000")
@@ -27,13 +34,28 @@ gio_batch_reverse <- function(coordinates, api_key=gio_auth()) {
 
   pairs <- sprintf("%s,%s", coordinates$lat, coordinates$lon)
 
+  params <- list(api_key=api_key)
+  if (!missing(fields)) params$fields <- paste0(trimws(fields), collapse=",")
+
   res <- httr::POST("https://api.geocod.io/v1/reverse",
-                    query=list(api_key=api_key),
-                    body=as.list(pairs), encode="json")
+                    query=params, body=as.list(pairs), encode="json")
 
   httr::stop_for_status(res)
 
-  jsonlite::fromJSON(httr::content(res, as="text", encoding="UTF-8"))
+  res <- jsonlite::fromJSON(httr::content(res, as="text", encoding = "UTF-8"),
+                            flatten = TRUE)
+
+  res <- res$results$response.results
+
+  res <- map_df(res, ~.)
+
+  new_names <- gsub("\\.", "_", colnames(res))
+  new_names <- gsub("response_input|address_components|fields", "", new_names)
+  new_names <- gsub("[_]+", "_", new_names)
+  new_names <- sub("^_", "", new_names)
+
+  res <- set_names(res, new_names)
+
+  as_tibble(res)
 
 }
-

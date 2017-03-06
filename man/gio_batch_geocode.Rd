@@ -4,10 +4,17 @@
 \alias{gio_batch_geocode}
 \title{Geocode up to 10,000 addresses}
 \usage{
-gio_batch_geocode(addresses, api_key = gio_auth())
+gio_batch_geocode(addresses, fields, api_key = gio_auth())
 }
 \arguments{
 \item{addresses}{character vector of addresses (10K max)}
+
+\item{fields}{vector of additional fields to return with query results. Note that these
+count as extra lookups and impact your dailu quota/costs. See \href{https://geocod.io/docs/#fields}{the official documentation}
+for more information on costs/pricing. Can be \code{cd}, \code{cd113}, \code{cd114}, or \code{cd115} for
+current or historical Congressional districts (U.S.); \code{stateleg} for State Legislative District (House & Senate, U.S.);
+\code{school} forSchool District (elementary/secondary or unified, U.S.); \code{census} for
+Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
@@ -15,11 +22,14 @@ gio_batch_geocode(addresses, api_key = gio_auth())
 Geocode up to 10,000 addresses
 }
 \examples{
-gio_batch_geocode(c(
+addresses <- c(
   "1109 N Highland St, Arlington VA",
   "525 University Ave, Toronto, ON, Canada",
   "4410 S Highway 17 92, Casselberry FL",
   "15000 NE 24th Street, Redmond WA",
   "17015 Walnut Grove Drive, Morgan Hill CA"
-))
+)
+
+gio_batch_geocode(addresses)
+gio_batch_geocode(addresses, fields=c("cd", "stateleg"))
 }

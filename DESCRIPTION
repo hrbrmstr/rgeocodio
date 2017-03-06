@@ -17,5 +17,6 @@ Depends:
 Imports:
     purrr,
     httr,
-    jsonlite
+    jsonlite,
+    tibble
 RoxygenNote: 6.0.1

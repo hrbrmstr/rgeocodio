@@ -4,10 +4,17 @@
 \alias{gio_reverse}
 \title{Reverse geocode a single lat/lon pair}
 \usage{
-gio_reverse(lat, lon, api_key = gio_auth())
+gio_reverse(lat, lon, fields, api_key = gio_auth())
 }
 \arguments{
 \item{lat, lon}{lat/lon pair to reverse geocode}
+
+\item{fields}{vector of additional fields to return with query results. Note that these
+count as extra lookups and impact your dailu quota/costs. See \href{https://geocod.io/docs/#fields}{the official documentation}
+for more information on costs/pricing. Can be \code{cd}, \code{cd113}, \code{cd114}, or \code{cd115} for
+current or historical Congressional districts (U.S.); \code{stateleg} for State Legislative District (House & Senate, U.S.);
+\code{school} forSchool District (elementary/secondary or unified, U.S.); \code{census} for
+Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
@@ -16,4 +23,5 @@ Reverse geocode a single lat/lon pair
 }
 \examples{
 gio_reverse(38.9002898, -76.9990361)
+gio_reverse(38.9002898, -76.9990361, fields=c("census", "stateleg"))
 }
