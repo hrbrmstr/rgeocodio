@@ -18,10 +18,16 @@ Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
+\value{
+\code{tibble}
+}
 \description{
 Reverse geocode a single lat/lon pair
 }
 \examples{
 gio_reverse(38.9002898, -76.9990361)
 gio_reverse(38.9002898, -76.9990361, fields=c("census", "stateleg"))
+}
+\references{
+\href{https://geocod.io/docs/}{Official Geocodio API documentation}
 }

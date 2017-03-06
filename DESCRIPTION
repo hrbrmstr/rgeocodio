@@ -1,11 +1,13 @@
 Package: rgeocodio
 Type: Package
-Title: Tools to Work with the <geocod.io> 'API'
+Title: Tools to Work with the 'Geocodio' 'API'
 Version: 0.1.0
 Date: 2017-03-05
 Author: Bob Rudis (bob@rud.is)
 Maintainer: Bob Rudis <bob@rud.is>
-Description: A set of tools to Work with the <geocod.io> 'API'.
+Description: A set of tools to perform individual or batch forward or reverse 
+    geocoding using the 'Geocodio' (<http://geocod.io/>) 'API'. You need an 'API' key -
+    which has a free tier - to use this package.
 URL: https://github.com/hrbrmstr/rgeocodio
 BugReports: https://github.com/hrbrmstr/rgeocodio/issues
 License: AGPL

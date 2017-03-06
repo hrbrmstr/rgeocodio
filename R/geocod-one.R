@@ -1,5 +1,8 @@
 #' Geocode a single address
 #'
+#' **You can also geocode intersections.** Just specify the two streets that you want to
+#' geocode in your query.
+#'
 #' @md
 #' @param address address to geocode
 #' @param fields vector of additional fields to return with query results. Note that these
@@ -9,6 +12,8 @@
 #'        `school` forSchool District (elementary/secondary or unified, U.S.); `census` for
 #'        Census Block/Tract & FIPS codes (U.S.) or `timezone` for timezone.
 #' @param api_key `geocod.io` API key
+#' @return `tibble`
+#' @references [Official Geocodio API documentation](https://geocod.io/docs/)
 #' @export
 #' @examples \dontrun{
 #' gio_geocode("1109 N Highland St, Arlcdceington, VA")
@@ -18,7 +23,7 @@
 gio_geocode <- function(address, fields, api_key=gio_auth()) {
 
   params <- list(q=address, api_key=api_key)
-  if (!missing(fields)) params$fields <- paste0(trimws(fields), collapse=",")
+  if (!missing(fields)) params$fields <- process_fields(fields)
 
   res <- httr::GET("https://api.geocod.io/v1/geocode", query=params)
 
@@ -40,6 +45,9 @@ gio_geocode <- function(address, fields, api_key=gio_auth()) {
 }
 
 #' Geocode a single address
+#'
+#' **You can also geocode intersections.** Just specify the two streets that you want to
+#' geocode in your query.
 #'
 #' @md
 #' @param street,city,state,postal_code,country address components

@@ -6,6 +6,9 @@ output: rmarkdown::github_document
 
 NOTE: You need an [API key](https://dash.geocod.io/) to use this package.
 
+There is a _great deal_ of API documentation in the main pacakge help page. It is 
+_highly_ suggested you do `help("rgeocodio-package")` after installing the package.
+
 The following functions are implemented:
 
 - `gio_auth`:	Get or set GEOCODIO_API_KEY value
@@ -21,8 +24,9 @@ All functions return tidy `tibble`s with sane column names.
 
 - <strike>enable selection of additional fields</strike>
 - <strike>better return types</strike>
-- more error checking
-- tests
+- a tad more error checking (especially processing API [status codes](https://geocod.io/docs/#errors)
+- more/better tests along with full code coverage
+- Add R examples to the [official documentation](https://github.com/geocodio/docs)
 
 ### Installation
 

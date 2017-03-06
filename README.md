@@ -3,6 +3,8 @@
 
 NOTE: You need an [API key](https://dash.geocod.io/) to use this package.
 
+There is a *great deal* of API documentation in the main pacakge help page. It is *highly* suggested you do `help("rgeocodio-package")` after installing the package.
+
 The following functions are implemented:
 
 -   `gio_auth`: Get or set GEOCODIO\_API\_KEY value
@@ -18,8 +20,9 @@ All functions return tidy `tibble`s with sane column names.
 
 -   <strike>enable selection of additional fields</strike>
 -   <strike>better return types</strike>
--   more error checking
--   tests
+-   a tad more error checking (especially processing API [status codes](https://geocod.io/docs/#errors)
+-   more/better tests along with full code coverage
+-   Add R examples to the [official documentation](https://github.com/geocodio/docs)
 
 ### Installation
 
@@ -222,13 +225,13 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Mar  6 07:21:16 2017"
+    ## [1] "Mon Mar  6 11:44:09 2017"
 
 ``` r
 test_dir("tests/")
 ```
 
     ## testthat results ========================================================================================================
-    ## OK: 0 SKIPPED: 0 FAILED: 0
+    ## OK: 10 SKIPPED: 0 FAILED: 0
     ## 
     ## DONE ===================================================================================================================

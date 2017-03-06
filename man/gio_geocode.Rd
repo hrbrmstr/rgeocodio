@@ -18,12 +18,20 @@ Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
+\value{
+\code{tibble}
+}
 \description{
-Geocode a single address
+\strong{You can also geocode intersections.} Just specify the two streets that you want to
+geocode in your query.
 }
 \examples{
 \dontrun{
 gio_geocode("1109 N Highland St, Arlcdceington, VA")
-gio_geocode("1109 N Highland St, Arlington, VA", fields=c("cd", "stateleg"))
+gio_geocode("1109 N Highland St, Arlington, VA",
+            fields=c("cd", "stateleg"))
 }
+}
+\references{
+\href{https://geocod.io/docs/}{Official Geocodio API documentation}
 }

@@ -10,14 +10,15 @@
 #'        `school` forSchool District (elementary/secondary or unified, U.S.); `census` for
 #'        Census Block/Tract & FIPS codes (U.S.) or `timezone` for timezone.
 #' @export
-#' @returh `tibble`
+#' @return `tibble`
+#' @references [Official Geocodio API documentation](https://geocod.io/docs/)
 #' @examples
 #' gio_reverse(38.9002898, -76.9990361)
 #' gio_reverse(38.9002898, -76.9990361, fields=c("census", "stateleg"))
 gio_reverse <- function(lat, lon, fields, api_key=gio_auth()) {
 
   params <- list(q=sprintf("%s,%s", lat, lon), api_key=api_key)
-  if (!missing(fields)) params$fields <- paste0(trimws(fields), collapse=",")
+  if (!missing(fields)) params$fields <- process_fields(fields)
 
   res <- httr::GET("https://api.geocod.io/v1/reverse", query=params)
 

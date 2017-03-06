@@ -18,8 +18,16 @@ Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
+\value{
+\code{tibble}
+}
 \description{
-Geocode up to 10,000 addresses
+If you have several addresses that you need to geocode, batch geocoding is a much faster
+option since it removes the overhead of having to perform multiple HTTP requests.
+}
+\details{
+\strong{You can also geocode intersections.} Just specify the two streets that you want to
+geocode in your query.
 }
 \examples{
 addresses <- c(
@@ -32,4 +40,7 @@ addresses <- c(
 
 gio_batch_geocode(addresses)
 gio_batch_geocode(addresses, fields=c("cd", "stateleg"))
+}
+\references{
+\href{https://geocod.io/docs/}{Official Geocodio API documentation}
 }

@@ -7,7 +7,7 @@
 gio_batch_reverse(coordinates, fields, api_key = gio_auth())
 }
 \arguments{
-\item{coordinates}{data frame of coordinates with \code{lat} and \code{lon} columns}
+\item{coordinates}{data frame with coordinates in \code{lat} and \code{lon} columns}
 
 \item{fields}{vector of additional fields to return with query results. Note that these
 count as extra lookups and impact your dailu quota/costs. See \href{https://geocod.io/docs/#fields}{the official documentation}
@@ -18,8 +18,12 @@ Census Block/Tract & FIPS codes (U.S.) or \code{timezone} for timezone.}
 
 \item{api_key}{\code{geocod.io} API key}
 }
+\value{
+\code{tibble}
+}
 \description{
-Reverse geocode up to 10,000 coordinates
+If you have several addresses that you need to reverse geocode, batch rev-geocoding is a much
+faster option since it removes the overhead of having to perform multiple HTTP requests.
 }
 \examples{
 data.frame(
@@ -28,4 +32,7 @@ data.frame(
 ) -> to_code
 gio_batch_reverse(to_code)
 gio_batch_reverse(to_code, fields=c("census", "stateleg"))
+}
+\references{
+\href{https://geocod.io/docs/}{Official Geocodio API documentation}
 }

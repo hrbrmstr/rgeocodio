@@ -1,5 +1,11 @@
 #' Geocode up to 10,000 addresses
 #'
+#' If you have several addresses that you need to geocode, batch geocoding is a much faster
+#' option since it removes the overhead of having to perform multiple HTTP requests.
+#'
+#' **You can also geocode intersections.** Just specify the two streets that you want to
+#' geocode in your query.
+#'
 #' @md
 #' @param addresses character vector of addresses (10K max)
 #' @param fields vector of additional fields to return with query results. Note that these
@@ -9,6 +15,8 @@
 #'        `school` forSchool District (elementary/secondary or unified, U.S.); `census` for
 #'        Census Block/Tract & FIPS codes (U.S.) or `timezone` for timezone.
 #' @param api_key `geocod.io` API key
+#' @return `tibble`
+#' @references [Official Geocodio API documentation](https://geocod.io/docs/)
 #' @export
 #' @examples
 #' addresses <- c(
@@ -29,7 +37,7 @@ gio_batch_geocode <- function(addresses, fields, api_key=gio_auth()) {
   }
 
   params <- list(api_key=api_key)
-  if (!missing(fields)) params$fields <- paste0(trimws(fields), collapse=",")
+  if (!missing(fields)) params$fields <- process_fields(fields)
 
   res <- httr::POST("https://api.geocod.io/v1/geocode",
                     query=params, body=as.list(addresses), encode="json")
