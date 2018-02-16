@@ -20,7 +20,7 @@ gio_reverse <- function(lat, lon, fields, api_key=gio_auth()) {
   params <- list(q=sprintf("%s,%s", lat, lon), api_key=api_key)
   if (!missing(fields)) params$fields <- process_fields(fields)
 
-  res <- httr::GET("https://api.geocod.io/v1/reverse", query=params)
+  res <- httr::GET("https://api.geocod.io/v1.2/reverse", query=params)
 
   httr::stop_for_status(res)
 
