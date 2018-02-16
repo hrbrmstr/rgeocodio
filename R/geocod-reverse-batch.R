@@ -43,7 +43,7 @@ gio_batch_reverse <- function(coordinates, fields, api_key=gio_auth()) {
   params <- list(api_key=api_key)
   if (!missing(fields)) params$fields <- process_fields(fields)
 
-  res <- httr::POST("https://api.geocod.io/v1/reverse",
+  res <- httr::POST("https://api.geocod.io/v1.2/reverse",
                     query=params, body=as.list(pairs), encode="json")
 
   httr::stop_for_status(res)
