@@ -1,15 +1,20 @@
 Package: rgeocodio
 Type: Package
 Title: Tools to Work with the 'Geocodio' 'API'
-Version: 0.1.0
-Date: 2017-03-05
-Author: Bob Rudis (bob@rud.is)
+Version: 0.3.0
+Date: 2018-05-05
+Authors@R: c(
+    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5670-2640")),
+    person("Charlie", "Thompson", email = "chuck@rcharlie.com", role = "aut")
+  )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: A set of tools to perform individual or batch forward or reverse 
-    geocoding using the 'Geocodio' (<http://geocod.io/>) 'API'. You need an 'API' key -
-    which has a free tier - to use this package.
+    geocoding using the 'Geocodio' (<http://geocod.io/>) 'API'. You need an 'API' key --
+    which has a free tier -- to use this package.
 URL: https://github.com/hrbrmstr/rgeocodio
 BugReports: https://github.com/hrbrmstr/rgeocodio/issues
+Encoding: UTF-8
 License: AGPL
 Suggests:
     testthat,
@@ -21,4 +26,4 @@ Imports:
     httr,
     jsonlite,
     tibble
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

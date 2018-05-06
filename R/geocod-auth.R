@@ -7,7 +7,7 @@
 #' @md
 #' @param force force setting a new geocod.io API key for the
 #'        current environment?
-#' @return `list` containing the combined geocod.io API key
+#' @return the geocod.io API key
 #' @export
 gio_auth <- function(force=FALSE) {
 

@@ -11,7 +11,7 @@ gio_auth(force = FALSE)
 current environment?}
 }
 \value{
-\code{list} containing the combined geocod.io API key
+the geocod.io API key
 }
 \description{
 The API wrapper functions in this package all rely on a geocod.io API
