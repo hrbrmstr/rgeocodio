@@ -6,7 +6,8 @@ Date: 2018-05-05
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5670-2640")),
-    person("Charlie", "Thompson", email = "chuck@rcharlie.com", role = "aut")
+    person("Charlie", "Thompson", email = "chuck@rcharlie.com", role = "aut"),
+    person("Lyubomir", "Georgiev", email = "lyubomir.georgiev@gmail.com", role = "ctb")
   )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: A set of tools to perform individual or batch forward or reverse 
@@ -26,4 +27,4 @@ Imports:
     httr,
     jsonlite,
     tibble
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 7.1.0
