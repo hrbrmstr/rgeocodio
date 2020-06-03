@@ -39,7 +39,7 @@ gio_batch_geocode <- function(addresses, fields, api_key=gio_auth()) {
   params <- list(api_key=api_key)
   if (!missing(fields)) params$fields <- process_fields(fields)
 
-  res <- httr::POST("https://api.geocod.io/v1.4/geocode",
+  res <- httr::POST("https://api.geocod.io/v1.6/geocode",
                     query=params, body=as.list(addresses), encode="json")
 
   httr::stop_for_status(res)

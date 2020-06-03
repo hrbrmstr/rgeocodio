@@ -25,7 +25,7 @@ gio_geocode <- function(address, fields, api_key=gio_auth()) {
   params <- list(q=address, api_key=api_key)
   if (!missing(fields)) params$fields <- process_fields(fields)
 
-  res <- httr::GET("https://api.geocod.io/v1.4/geocode", query=params)
+  res <- httr::GET("https://api.geocod.io/v1.6/geocode", query=params)
 
   httr::stop_for_status(res)
 
@@ -75,7 +75,7 @@ gio_geocode_components <- function(street, city, state, postal_code, country,
   if (!missing(postal_code)) params$postal_code <- postal_code
   if (!missing(country)) params$country <- country
 
-  res <- httr::GET("https://api.geocod.io/v1.4/geocode", query=params)
+  res <- httr::GET("https://api.geocod.io/v1.6/geocode", query=params)
 
   httr::stop_for_status(res)
 
